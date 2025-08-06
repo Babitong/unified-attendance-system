@@ -1,0 +1,336 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    
+}
+
+body{
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
+    min-height: 100vh;
+    background-color: #fffff0;   
+}
+
+
+
+/* NAVIGATION BAR  */
+.navbar{
+    display: flex;
+    height: 40px;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+.logo a{
+    text-decoration: none;
+    font-weight: 900;  
+    color: #000; 
+}
+.nav{
+    display: flex;
+    gap: 40px;
+}
+.nav li{
+    list-style: none;
+}
+
+.nav a{
+    color: #000;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+
+
+
+/* HERO SECTION */
+.header{
+    margin-top: 2rem;
+    background-color: #556b2f;
+    padding:5rem 10rem;
+    color: #fff;
+}
+.header h1{ 
+    font-size: 4rem;
+}
+
+
+
+/* CTA SECTION */
+.boxes{
+    color: #0b0a0a;
+    padding: 2rem 2rem;
+    
+}
+
+.container1{
+    display: grid;
+    grid-template-columns: repeat(3 ,1fr);
+    padding: 20px 100px 0;
+    row-gap: 100px;
+    
+       
+}
+
+.animation{
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range:  entry 0% cover 40%;
+
+}
+@keyframes appear{
+    from{
+        opacity: 0;
+        /* transform: translateX(-100px); */
+        scale: 20%;
+    }
+    to{
+        opacity: 1;
+        /* transform: translateX(1px); */
+        scale: 100%;
+    }
+
+
+
+}
+.price{
+    padding-bottom: 40px;
+}
+.detail{
+    color: #7b6c6c;
+}
+
+
+.img{ 
+    width: 80%;
+    height: 80%;
+    
+    
+}
+.img2{
+    width: 50%;
+    /* height: 70%; */
+    
+}
+
+.action{
+    padding: 50px; 
+    color: #130101;
+   
+}
+.cta-column{
+    
+    padding: 1rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 2rem;
+    row-gap: 3rem;
+   
+    
+    
+    
+}
+
+.call-to-action{
+    padding: 2rem 1rem;
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.55);
+    margin: 1rem 0;
+}
+.action h3{
+    padding: 20px;
+    text-align: center;
+    font-weight: 800;
+    font-size: 2rem;
+}
+
+
+
+
+
+
+
+
+/* FOOTER SECTION */
+
+footer{
+    background-color: #8b5e3c;
+    padding-top: 2rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+}
+
+.footer{
+    padding: 2rem 0;
+    
+    display: flex;
+    flex-direction: column;
+    
+}
+footer h2{
+    text-decoration: underline;
+}
+
+
+
+.conul a,li{
+    text-decoration: none;
+    list-style: none;
+}
+.p{
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* GLOBAL STYLE FOR BUTTONS AND IMAGES */
+ img{
+    border-radius: 3px;
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.55);
+}
+
+.btn{
+    
+    border-radius: 6px;
+    border:none;
+    background-color: green;
+    padding:1rem 6rem;
+    font-weight: 800;
+    color: #fff; 
+    
+}
+
+/* .btn:hover{
+    padding: 20px;
+    
+    
+} */
+#cta2{
+    background-color: green;
+    color: #fff;
+    padding: 8px;
+    border-radius: 2px;
+}
+
+
+ /* MEDIA QUERIES FOR SCREEN ADJUSTMENT */
+
+@media(max-width: 600px){
+
+    /* NAVIGATION SECTION */
+   
+    .navbar{
+        font: 1em sans-serif;
+        height: 50px;
+        
+    }
+    .nav{
+        padding-top: 10px;
+        flex-wrap: wrap;
+    }
+
+    /* HEADER SECTION */
+
+    .header {
+        margin-top: 50px ;
+        padding: 1rem 2.5rem;
+        text-align: center;
+    }
+
+    /* HERO SECTION */
+
+    .container{
+        flex-direction:column; 
+        
+    }
+
+    /* ABOUT SECTION */
+    .about{
+        display: block;
+        padding: 0;
+    
+    }
+    .about p{
+        text-align: left;
+        padding: 0 1rem;
+    }
+    .about-items ul{
+        display: block;
+        padding: 2rem 3rem;
+    }
+
+    /* ORDER SECTION */
+
+    .boxes .container1 {
+        display:block;
+        padding: 1rem 2rem;
+        /* text-align: center; */
+    }
+    .animation{
+        padding: 20px;
+    }
+
+    /* MORE OF US SECTION */
+    .cta-column{
+        display: block;
+        padding: 2rem 0;
+    }
+    
+    
+    /* CONTACT FORM SECTION */
+    
+    .contact{
+        display: block;
+        margin-top: 20px;
+    }
+    .infor{
+        padding: 3rem 2rem;
+    }
+    .infor-contact{
+        width: 100%;
+        
+    }
+    form{
+        margin-top: 20px;
+    }
+
+    input{
+        
+        width: 100%;
+        
+        
+    }
+    textarea{
+        
+        width: 100%;
+        
+    }
+    
+    .img2{
+        width: 100%;
+        
+
+        /* FOOTER SECTION */
+    }
+     .footer{
+        display: block;
+        background-color: #9cd69c;
+        
+    }
+    
+    
+     
+    .btn{
+    
+        border-radius: 6px;
+        border:none;
+        background-color: green;
+        padding:1rem 5.5rem;
+        font-weight: 800;
+        color: #fff; 
+        
+    }
+    
+}
