@@ -1,0 +1,88 @@
+
+{% extends 'base.html'%}
+{% load static %}
+
+{% block content %}
+  <h2 class="dashboard-heading"> Daily Attendance logs  {{ request.user.department.name }}</h2>
+  
+  {% if records %}
+  <div class="attendance-table-wrapper">
+    <form method"get" class="date-filter">
+      
+      <label for="date">📆 Filter by date: <label>
+      <input id="date" name="date" type="date" value="{{selected_date}}" placeholder="filter attendance by date">
+      <button type="submit" class="button">🔍Filter</button>
+      {% comment %} <a href="{% url 'daily_logs'%}" class="reset-link">Reset</a> {% endcomment %}
+        
+      
+    </form>
+    
+    
+     <table class="attendance-table">
+      {% comment %} <p class="display">Swipe left or right to view attendance</p> {% endcomment %}
+      <thead>
+        <tr>
+        <th>Users</th>
+        <th>Departments
+          
+        </th
+        ><th>Date</th>
+         <th>Hours Worked</th>
+        <th>Check-in</th>
+        <th>Check-out</th>
+       
+        
+      </tr>
+      </thead>
+
+
+      <tbody>
+        {% for r in records %}
+        <tr>
+          <td class="td-text">{{ r.user.username }}</td>
+          <td class="td-text">{{r.user.department.name}}
+            
+          </td>
+          <td class="td-text">{{r.scanned_at|date:"Y-m-d"}}</td>
+          <td>
+            {{r.hours_worked}}
+          </td> 
+          <td class="{% if r.scanned_at %}status-ok-in {% else %}status-missing-in{%endif%}">{{ r.scanned_at|date:"H:i:s" }}</td>
+          <td class="{% if r.checked_out_at %}status-ok {% else %}status-missing{%endif%}">
+          {% if r.checked_out_at %}
+          {{ r.checked_out_at|date:"H:i:s" }}
+          {% else %}
+          -
+          {% endif %}</td>
+
+          
+        </tr>
+      {% endfor %}
+      <tbody>
+      
+    </table>
+    <div class="export-buttons">
+      <h2>📤 Export Attendance Logs</h2>
+      <div style="margin-top: 10px;">
+        {% comment %} <a href="{% url 'export_excel' %}" class="btn btn-success">📥 Export to Excel</a> {% endcomment %}
+        <a href="{% url 'pdf' %}" class="btn btn-danger">📄 Export to PDF</a>
+      </div>
+
+    
+    </div>
+  </div>
+  
+   
+  {% else %}
+    <p class="no-records ">-No attendance records yet today-.</p>
+    
+        {% comment %} <a href="{% url 'daily_logs'%}" class="reset-link">Reset</a> {% endcomment %}
+      
+  {% endif %}
+{% endblock %}
+
+ 
+
+
+
+

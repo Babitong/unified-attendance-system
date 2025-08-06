@@ -1,0 +1,49 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    h2 { text-align: center; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #333; padding: 4px; text-align: left; }
+    th { background-color: #f2f2f2; }
+    .absent { color: red; }
+  </style>
+</head>
+<body>
+  <h2>Attendance Logs - {{ logs.0.scanned_at|date:"F j, Y" }}</h2>
+  <table>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      
+      <th>Check-In</th>
+      <th>Check-Out</th>
+      <th>Departments</th>
+      
+    </tr>
+    {% for log in logs %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ log.user.username }}</td>
+      
+      <td>{{log.scanned_at|date:"h:i A" }}</td>
+      <td>
+        {% if log.checked_out_at %}
+          {{ log.checked_out_at|date:"h:i A" }}
+        {% else %}
+          <span class="absent">—</span>
+        {% endif %}
+      </td>
+      <td>{{log.user.department.name}}</td>
+      
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>
+
+

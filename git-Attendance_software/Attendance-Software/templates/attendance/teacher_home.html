@@ -1,0 +1,98 @@
+{% extends "base.html"%}
+{% load static %}
+
+{% block content%}
+
+<h2>👋 Welcome, {{ user.get_full_name|default:user.username }}</h2>
+
+<p>✅ Checked in at: {{ scanned_at }}</p>
+
+{% if checked_out_at %}
+  <p>✅ Checked out at: {{ checked_out_at }}</p>
+{% elif can_checkout %}
+  <form method="post" action="{% url 'checkout' %}">
+    {% csrf_token %}
+    <button type="submit">Check Out Now</button>
+  </form>
+{% else %}
+  <p>⏳ You can check out after 4 hours have passed.</p>
+{% endif %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teacher Dashboard</title>
+  <link rel="stylesheet" href="{% static 'css/teacher-dashboard.css' %}" />
+</head>
+<body>
+  <header class="header">
+    <h1>👋 Welcome, {{ user.get_full_name|default:user.username }}</h1>
+    <p class="date">Monday, August 4, 2025</p>
+  </header>
+
+  <section class="quick-actions">
+    <button>📷 Scan Attendance</button>
+    <button>📄 View My Logs</button>
+    <button>🚩 View Today's Logs</button>
+    <button>⚙️ Utility</button>
+  </section>
+
+  <section class="card">
+    <h2>Attendance Summary</h2>
+    <ul>
+      <li>✅ Mr. Talla checked in</li>
+      <li>⏰ Miss Neba flagged absent at 8:20 AM</li>
+    </ul>
+    <p class="pending">Pending: 18</p>
+  </section>
+
+  <section class="card">
+    <h2>Calendar & Events</h2>
+    <div class="calendar">
+      <div class="weekdays">
+        <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+      </div>
+      <div class="dates">
+        <!-- Simplified calendar row -->
+        <span></span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>
+        <span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span>
+        <span>14</span><span>15</span><span class="highlight">16</span><span>17</span><span>18</span><span>19</span><span>20</span>
+      </div>
+    </div>
+    <ul>
+      <li>🔔 Staff Meeting: Wed at 10 AM</li>
+      <li>🏖️ Holiday: August 15</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Tools</h2>
+    <ul>
+      <li>🔍 Search Logs</li>
+      <li>📤 Export Today's Logs</li>
+      <li>🌗 Toggle Theme</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Engagement</h2>
+    <p>🏠 "Learning Together"</p>
+    <p class="checked-in">✅ Checked In!</p>
+    <blockquote>"Attendance is the heartbeat of accountability."</blockquote>
+  </section>
+
+  <section class="card">
+    <h2>Session Info</h2>
+    <p>✅ Checked in at 8:12 AM</p>
+    <p>⏳ Check-out available in: <span id="countdown">Loading...</span></p>
+  </section>
+
+  <script src="teacher-dashboard.js"></script>
+</body>
+</html>
+
+
+{% endblock %}
+

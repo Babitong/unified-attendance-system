@@ -1,0 +1,47 @@
+.login-container {
+    margin: 6rem auto;
+    align-items: center;
+    display: grid;
+     flex-direction: column;
+    justify-content: center; 
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    padding: 2.5rem 0;
+    max-width: 400px;
+}
+
+.login-title {
+    color: #4361ee;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 800;
+    font-size: larger;
+}
+
+.form-group input {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+
+.error-message {
+    color: #e74c3c;
+    text-align: center;
+    margin-bottom: 1rem;
+}

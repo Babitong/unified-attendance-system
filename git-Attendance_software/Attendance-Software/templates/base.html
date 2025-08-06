@@ -1,0 +1,79 @@
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance System</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    <link rel="stylesheet" href="{% static 'css/daily-logs.css' %}">
+    <link rel="stylesheet" href="{% static 'css/scan.css' %}">
+    
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="{% static 'assets/logo.jpeg' %}" alt="Logo">
+                
+            </div>
+            <nav class="auth-actions">
+                {% if user.is_authenticated %}
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="auth-btn logout-btn">Logout</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="auth-btn login-btn">Login</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+
+
+    {% block content%}
+    <main>
+        <h1>Unified Attendance System </h1>
+         <!-- Role Login Panel -->
+        <section class="login-section">
+            <h2>Select Your Role</h2>
+            <div class="role-buttons">
+            <a href="{% url 'admin:index' %}" class="role-card admin">
+                <img src="{% static 'assets/admin-icon.jpg' %}" alt="Admin">
+                <span >Admin Login</span>
+            </a>
+            <a href="{% url "check_in" %}" class="role-card teacher">
+                <img src="{% static 'assets/teacher-icon.jpg' %}" alt="Teacher">
+                {% comment %} <span >Teacher Login</span> {% endcomment %}
+            </a>
+            <a href="{% url 'daily_logs' %}" class="role-card secretary">
+                <img src="{% static 'assets/secretary.jpg' %}" alt="Secretary">
+                <span >Secretary Login</span>
+            </a>
+            </div>
+        </section>
+
+                <!-- Feature Highlights -->
+        <section class="features">
+            <h2>Core Features</h2>
+            <ul class="features-column">
+            <li class="features-column-items"><strong>QR Scan Check-In/Out</strong> — Fast and secure attendance tracking</li>
+            <li class="features-column-items"><strong>Teaching Logs</strong> — Capture active teaching sessions</li>
+            <li class="features-column-items"><strong>Timetable Viewer</strong> — View department-specific schedules</li>
+            <li class="features-column-items"><strong>Export Logs</strong> — Download PDF/Excel reports</li>
+            </ul>
+        </section>
+    </main>
+     {% endblock %}
+
+    <footer>
+        
+        <p>&copy; {{ now.year }} Unified Attendance Software</p>
+    <p><a href="mailto:rexbabitong@gmail.com">Contact Support</a></p>
+    </footer>
+</body>
+</html>
+
